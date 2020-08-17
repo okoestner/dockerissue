@@ -6,13 +6,8 @@ services:
             - "8500:80"
 
         volumes:
-            # use the following for mac
-            # - /Users/olaf/Code/okrestapilearn/:/code
-            # - /Users/olaf/Code/okrestapilearn/site.conf:/etc/nginx/conf.d/default.conf
-
-            # use the following for win
-            - C:\Users\olafk\source\repos\okrestapilearn/:/code
-            - C:\Users\olafk\source\repos\okrestapilearn/site.conf:/etc/nginx/conf.d/default.conf
+            - ./:/code
+            - ./site.conf:/etc/nginx/conf.d/default.conf
 
         networks:
             - rest-network
@@ -21,7 +16,7 @@ services:
         build:
             context: .
         volumes:
-            - C:\Users\olafk\source\repos\okrestapilearn:/code
+            - ./:/code
         networks:
             - rest-network
   

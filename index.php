@@ -1,24 +1,9 @@
 <?php
 
-echo "<html>
-    <head>
-        <title>REST API learning environment</title>
-    </head>
-    <body>
-        <h1>Welcome to my environment!</h1>
-        <div style='font-family: sans-serif;'>I will now learn how to implement a REST API...</div>
-
-        <div>I will learn from <a href='https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html'>this site</a>.</div>";
+echo "<html><head><title>Learning</title></head><body><h1>Welcome to my environment!</h1>";
 
         
-        echo "Now from within php...<br>"; 
-        
-        // include database and object files
-        // include_once "api/config/database.php";
-        
-        // instantiate database and product object
-        // $database = new Database();
-        // $db = $database->getConnection();
+        echo "Connecting to DB...<br>"; 
         
         $dbHost =     "localhost";
         $dbDatabase = "api_db";
