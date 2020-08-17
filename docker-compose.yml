@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+    webserver:
+        image: nginx:latest
+        ports:
+            - "8500:80"
+
+        volumes:
+            # use the following for mac
+            # - /Users/olaf/Code/okrestapilearn/:/code
+            # - /Users/olaf/Code/okrestapilearn/site.conf:/etc/nginx/conf.d/default.conf
+
+            # use the following for win
+            - C:\Users\olafk\source\repos\okrestapilearn/:/code
+            - C:\Users\olafk\source\repos\okrestapilearn/site.conf:/etc/nginx/conf.d/default.conf
+
+        networks:
+            - rest-network
+
+    phpfpm:
+        build:
+            context: .
+        volumes:
+            - C:\Users\olafk\source\repos\okrestapilearn:/code
+        networks:
+            - rest-network
+  
+    mariadb:
+        image: mariadb
+        restart: always
+        environment: 
+            MYSQL_ROOT_PASSWORD: rootpwd
+            MYSQL_DATABASE: api_db
+        ports:
+            - "8589:3306"
+        networks: 
+            - rest-network
+        
+    phpmydbadmin:
+        image: phpmyadmin/phpmyadmin:5.0.2
+        networks: 
+            - rest-network
+        ports:
+            - "8502:80"
+        environment: 
+            PMA_HOST: mariadb
+        depends_on: 
+            - mariadb
+            
+networks:
+    rest-network:
+        driver: bridge
